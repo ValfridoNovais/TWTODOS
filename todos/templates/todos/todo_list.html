@@ -20,7 +20,7 @@
       </nav>
     <main class="container">
         <h1>Lista de tarefas</h1>
-        <a href="create" class="btn btn-primary btn-sm">CADASTRAR NOVO</a>
+        <a href="{% url 'todo_create' %}" class="btn btn-primary btn-sm">CADASTRAR NOVO</a>
         {% if todo_list %}
             <table class="table table-striped">
                 <thead>
@@ -42,7 +42,7 @@
                             <td>{{ todo.deadline }}</td>
                             <td>{{ todo.finished_at|default:"-" }}</td>
                             <td>
-                                
+                              <a href="create" class="btn btn-primary btn-sm">AUTERAR</a>
                                 <a href="#" class="btn btn-danger btn-sm">EXCLUIR</a>
                             </td>
                         </tr>

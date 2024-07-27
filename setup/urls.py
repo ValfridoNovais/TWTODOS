@@ -8,6 +8,6 @@ from todos.views import TodoListView, TodoCreatView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", TodoListView.as_view(), name="todo_list"),
-    path("create", TodoCreatView.as_view(), name="todo_creat")
+    path("create", TodoCreatView.as_view(), name="todo_create")
     #path("", todo_list),
 ]
