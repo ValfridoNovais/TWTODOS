@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>{% block title %}MMPG Novais{% endblock %}</title>
+  <style>
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #343a40;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease;
+      padding-top: 60px; /* Ajuste para deixar espaço para a navbar */
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    .content {
+      margin-left: 250px;
+      transition: margin-left 0.3s ease;
+      padding-top: 60px; /* Ajuste para deixar espaço para a navbar */
+    }
+
+    .content.full {
+      margin-left: 0;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" id="menu-toggle">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <span class="navbar-text">
+        MMPG Novais
+      </span>
+    </div>
+  </nav>
+  <div class="d-flex">
+    <div class="sidebar">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <i class="fas fa-bars fs-4"></i>
+        <span class="fs-4">MMPG Novais</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="{% url 'todo_list' %}" class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page">
+            <i class="fas fa-home me-2"></i>
+            LISTA
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'todo_create' %}" class="nav-link {% if request.path == '/create' %}active{% endif %} text-white">
+            <i class="fas fa-tachometer-alt me-2"></i>
+            CADASTRO
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'products' %}" class="nav-link {% if request.path == '/produtos' %}active{% endif %} text-white">
+            <i class="fas fa-box me-2"></i>
+            Produtos
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'clientes' %}" class="nav-link {% if request.path == '/clientes' %}active{% endif %} text-white">
+            <i class="fas fa-users me-2"></i>
+            Clientes
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content" id="main-content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+      document.querySelector(".sidebar").classList.toggle("hidden");
+      document.getElementById("main-content").classList.toggle("full");
+    });
+  </script>
+</body>
+</html>

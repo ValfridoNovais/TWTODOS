@@ -1,17 +1,20 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
-
-from .models import Todo
-
-#def todo_list(request):
-#    todos = Todo.objects.all()
-#    return render(request, "todos/todo_list.html", {"todos": #todos})
+from .models import Todo, Product, Client  # Importe seus modelos
+from .forms import TodoForm  # Importe o formulário
 
 class TodoListView(ListView):
     model = Todo
 
-class TodoCreatView(CreateView):
+class TodoCreateView(CreateView):
     model = Todo
-    fields = ["title", "deadline"]
+    form_class = TodoForm
     success_url = reverse_lazy("todo_list")
+
+class ProductListView(ListView):
+    model = Product
+    template_name = "todos/produtos.html"
+
+class ClientListView(ListView):
+    model = Client
+    template_name = "todos/clientes.html"
